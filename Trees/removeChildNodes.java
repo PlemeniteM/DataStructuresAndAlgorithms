@@ -3,7 +3,8 @@ class Solution{
           if(node==null)return null;
           if(node.left==null&&node.right==null)return null;
     
-          node.left=removeLeaves(node.left);
+          Node left=removeLeaves(node.left);
+          node.left=left;
           node.right=removeLeaves(node.right);
           return node;
        }
