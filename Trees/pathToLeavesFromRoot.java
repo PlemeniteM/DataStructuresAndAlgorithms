@@ -8,6 +8,7 @@ class Solution{
                return;
            }
            pathToLeafFromRoot(node.left,path+node.data+" ",sum+node.data,lo,hi);
+           
            pathToLeafFromRoot(node.right,path+node.data+" ",sum+node.data,lo,hi);
       }
 }
