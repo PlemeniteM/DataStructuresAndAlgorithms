@@ -7,7 +7,7 @@ class Solution {
         }
        
         int maxL=0;
-        for(int i:nums){
+        for(Integer i:map.keySet()){
 
             //Here we are checking if smaller element is present because if it is then the current element will already be part of a larger sequence
             //Eg if i==4 and if we found that 3 is also present then any sequence starting with 4 will always be part of 3 
