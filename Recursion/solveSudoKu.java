@@ -1,14 +1,6 @@
 class Solution {
-    char[][] fBoard;
     public void solveSudoku(char[][] board) {
-        fBoard=new char[9][9];
         fillBoard(board,0,0);
-        for(int i=0;i<9;i++){
-            for(int j=0;j<9;j++){
-                board[i][j]=fBoard[i][j];
-            }
-        }
-
     }
     public boolean valid(char[][]board,int i,int j,char k){
         for(int m=0;m<board.length;m++){
@@ -24,17 +16,9 @@ class Solution {
         return true;
         
     }
-    public void change(char[][] board){
-    for(int i = 0; i < board.length; i++){
-      for(int j = 0; j < board[0].length; j++){
-          fBoard[i][j]=board[i][j];
-      }
-    }
-  }
-    public void fillBoard(char[][] board,int i,int j){
+    public boolean fillBoard(char[][] board,int i,int j){
         if(i==board.length){
-            change(board);
-            return;
+           return true;
         }
         int ni=0;
         int nj=0;
@@ -47,17 +31,18 @@ class Solution {
             nj=j+1;
         }
         if(board[i][j]!='.'){
-            fillBoard(board,ni,nj);
+            if(fillBoard(board,ni,nj))return true;//if suduko gets solved then no further permutations are neccessary
         }
         else{
             for(char k='1';k<='9';k++){
                 if(valid(board,i,j,k)){
                     board[i][j]=k;
-                    fillBoard(board,ni,nj);
+                    if(fillBoard(board,ni,nj))return true;//This is done to prevent it from checking all further possiblities if sudoku gets solved
                     board[i][j]='.';
                 }
             }
         }
+        return false;
         
     }
 }
